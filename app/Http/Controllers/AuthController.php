@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\mailExample;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -36,6 +38,8 @@ class AuthController extends Controller
                 'data' => $user,
                 "token" => $token
             ];
+
+            Mail::to($user->email)->send(new mailExample($request['name']));
 
             return response()->json($res, Response::HTTP_CREATED);
         } catch (\Throwable $th){

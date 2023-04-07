@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IngredienteController;
+use App\Http\Controllers\mailExampleController;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -70,3 +71,6 @@ Route::group([
     ], function () {
     Route::post('/review', [ReviewController::class, 'createReview']);
 });
+
+// EMAILS
+Route::get('/sendEmail', [mailExampleController::class, 'sendExampleEmail']);
